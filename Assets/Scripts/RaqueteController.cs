@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class RaqueteController : MonoBehaviour {
   private Vector3 myPosition;
-  public float speed = 0.03f;
+  public float speed = 5f;
   public float myY;
   // Start is called before the first frame update
   void Start() {
@@ -17,11 +17,11 @@ public class RaqueteController : MonoBehaviour {
     transform.position = myPosition;
 
     if(Input.GetKey(KeyCode.UpArrow)) {
-      myY += speed;
+      myY += speed * Time.deltaTime;
     }
 
     if(Input.GetKey(KeyCode.DownArrow)) {
-      myY -= speed;
+      myY -= speed * Time.deltaTime;
     }
   }
 }
