@@ -7,6 +7,7 @@ public class RaqueteController : MonoBehaviour {
   public float myY;
   public float speed = 5f;
   public float racketLimit = 3.5f;
+  public bool isPlayer1;
   // Start is called before the first frame update
   void Start() {
     myPosition = transform.position;
@@ -17,11 +18,21 @@ public class RaqueteController : MonoBehaviour {
     myPosition.y = myY;
     transform.position = myPosition;
 
-    if(Input.GetKey(KeyCode.UpArrow) && myY < racketLimit) {
+
+
+    if(Input.GetKey(KeyCode.UpArrow) && myY < racketLimit && isPlayer1) {
       myY += speed * Time.deltaTime;
     }
 
-    if(Input.GetKey(KeyCode.DownArrow) && myY > -racketLimit) {
+    if(Input.GetKey(KeyCode.DownArrow) && myY > -racketLimit && isPlayer1) {
+      myY -= speed * Time.deltaTime;
+    }
+
+    if(Input.GetKey(KeyCode.W) && myY < racketLimit && !isPlayer1) {
+      myY += speed * Time.deltaTime;
+    }
+
+    if(Input.GetKey(KeyCode.S) && myY > -racketLimit && !isPlayer1) {
       myY -= speed * Time.deltaTime;
     }
   }
