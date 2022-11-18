@@ -18,22 +18,30 @@ public class RaqueteController : MonoBehaviour {
     myPosition.y = myY;
     transform.position = myPosition;
 
+    float deltaSpeed = speed * Time.deltaTime;
 
-
-    if(Input.GetKey(KeyCode.UpArrow) && myY < racketLimit && isPlayer1) {
-      myY += speed * Time.deltaTime;
+    if(Input.GetKey(KeyCode.UpArrow) && isPlayer1) {
+      myY += deltaSpeed;
     }
 
-    if(Input.GetKey(KeyCode.DownArrow) && myY > -racketLimit && isPlayer1) {
-      myY -= speed * Time.deltaTime;
+    if(Input.GetKey(KeyCode.DownArrow) && isPlayer1) {
+      myY -= deltaSpeed;
     }
 
-    if(Input.GetKey(KeyCode.W) && myY < racketLimit && !isPlayer1) {
-      myY += speed * Time.deltaTime;
+    if(Input.GetKey(KeyCode.W) && !isPlayer1) {
+      myY += deltaSpeed;
     }
 
-    if(Input.GetKey(KeyCode.S) && myY > -racketLimit && !isPlayer1) {
-      myY -= speed * Time.deltaTime;
+    if(Input.GetKey(KeyCode.S) && !isPlayer1) {
+      myY -= deltaSpeed;
+    }
+
+    if (myY < -racketLimit) {
+      myY = -racketLimit;
+    }
+
+    if (myY > racketLimit) {
+      myY = racketLimit;
     }
   }
 }
