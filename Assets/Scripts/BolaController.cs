@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class BolaController : MonoBehaviour {
   public Rigidbody2D myRigidbody;
   public float speed = 5f;
+  public float horizontalScreenBorder = 12f;
   private Vector2 myVelocity;
   // Start is called before the first frame update
   void Start() {
@@ -31,6 +33,11 @@ public class BolaController : MonoBehaviour {
   }
 
   // Update is called once per frame
-  void Update() {}
+  void Update() {
+    float ballX = transform.position.x;
+    if (ballX < -horizontalScreenBorder || ballX > horizontalScreenBorder) {
+      SceneManager.LoadScene("Jogo");
+    }
+  }
 }
 

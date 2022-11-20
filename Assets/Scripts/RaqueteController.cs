@@ -5,7 +5,7 @@ using UnityEngine;
 public class RaqueteController : MonoBehaviour {
   private Vector3 myPosition;
   public float myY;
-  public float speed = 5.5f;
+  public float speed = 6.5f;
   public float racketLimit = 3.5f;
   public bool isPlayer1;
   private bool isAutomatic = true;
