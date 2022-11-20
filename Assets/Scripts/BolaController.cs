@@ -10,9 +10,36 @@ public class BolaController : MonoBehaviour {
   public AudioClip sound;
   public Transform transformCamera;
   private Vector2 myVelocity;
+  private float delay = 2f;
+  private bool isStart = false;
   // Start is called before the first frame update
   void Start() {
     myRigidbody = GetComponent<Rigidbody2D>();
+  }
+
+  // Update is called once per frame
+  void Update() {
+    delay -= Time.deltaTime; 
+
+    if (delay <= 0 && !isStart) {
+      isStart = true;
+      onStartGame();
+    }
+
+   
+    float ballX = transform.position.x;
+    if (ballX < -horizontalScreenBorder || ballX > horizontalScreenBorder) {
+      SceneManager.LoadScene("Jogo");
+      delay = 2f;
+      isStart = false;
+    }
+  }
+
+  private void OnCollisionEnter2D(Collision2D other) {
+    AudioSource.PlayClipAtPoint(sound, transformCamera.position);
+  }
+
+  private void onStartGame() {
     int direction = Random.Range(0, 4);
     switch (direction) {
       case 0:
@@ -32,19 +59,6 @@ public class BolaController : MonoBehaviour {
       break;  
     }
     myRigidbody.velocity = myVelocity;
-  }
-
-  // Update is called once per frame
-  void Update() {
-    float ballX = transform.position.x;
-    if (ballX < -horizontalScreenBorder || ballX > horizontalScreenBorder) {
-      SceneManager.LoadScene("Jogo");
-    }
-  }
-
-  private void OnCollisionEnter2D(Collision2D other) {
-    Debug.Log(other.gameObject.name);
-    AudioSource.PlayClipAtPoint(sound, transformCamera.position);
   }
 }
 
