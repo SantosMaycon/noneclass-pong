@@ -558,6 +558,7 @@ MonoBehaviour:
   myRigidbody: {fileID: 0}
   speed: 5
   horizontalScreenBorder: 12
+  sound: {fileID: 8300000, guid: 961abfad056ed4248b6a129ed39f2ce2, type: 3}
 --- !u!212 &1067777652
 SpriteRenderer:
   m_ObjectHideFlags: 0
